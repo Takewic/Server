@@ -1,0 +1,1 @@
+"fdisk -l 2> /dev/null | grep 'Disk /dev' | cut -d" " -f2 | cut -b1-8"
