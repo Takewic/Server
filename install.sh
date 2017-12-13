@@ -1,5 +1,5 @@
 #!/bin/bash
-programas="apache2 speedtest-cli stress memtester lshw dialog htop dparm sysbench"
+programas="apache2 speedtest-cli stress memtester lshw dparm sysbench"
 
 
 
@@ -20,7 +20,17 @@ for x in $(echo $programas) ; do
 	echo "Instalando $x"
 	apt-get install $x -y || falhou instalação $x
 done
-echo "Instalação php7"
+echo "Instalação php7 debian"
+
+echo "# PHP7" >> /etc/apt/source.list
+echo "deb http://packages.dotdeb.org" jessie all>> /etc/apt/source.list
+echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/source.list
+wget http://www.dotdeb.org/dotdeb.gpg
+apt-key add dotdeb.gpg
+apt-get update
+aptitude install php7.0
+
+echo "Instalação php7 ubuntu"
 
 apt-get install php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl libapache2-mod-php7.0 -y
 a2enmod php7.0
