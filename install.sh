@@ -21,6 +21,7 @@ for x in $(echo $programas) ; do
 	apt-get install $x -y || falhou instalação $x
 done
 echo "Instalação php7"
+
 apt-get install php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl libapache2-mod-php7.0 -y
 a2enmod php7.0
 cp /etc/apache2/conf-enabled/charset.conf charset.conf.bkp || falhou copia

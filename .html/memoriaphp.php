@@ -142,6 +142,8 @@ Teste de Memória RAM
 
  <li><a href="informacoes.html">Como funciona?</a></li>
 
+ <li><a href="download2.html">Download</a></li>
+
  <li><a href="contato.html">Contato</a></li>
 
 </ul>
