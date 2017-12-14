@@ -1,4 +1,4 @@
-o<!DOCTYPE html>
+<!DOCTYPE html>	
 
 <html>
 
@@ -11,9 +11,8 @@ o<!DOCTYPE html>
   padding: 0px 0px 0px 0px;}
 
 body {background-color:#1c1b1b;
-      border:2px solid white;
-      padding:60px;}
-
+      margin: 25px 15%;  
+      }
 
 
 ul {list-style-type: none;
@@ -25,9 +24,7 @@ ul {list-style-type: none;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     }
 
-
-
-.menu li {float: left;}
+.menu li {float: left;} 
 
 
 
@@ -95,6 +92,19 @@ body {
     }
 }
 
+form {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;  
+}
+
+#info p:nth-child(1) {
+    font-weight: 600;
+    font-size: larger;
+    margin-bottom: 10px;
+}
+
 
 </style>
 
@@ -148,22 +158,20 @@ Diagnóstico de Hardware
 
 </ul>
 
-
 <br>
 
-
+		
 
 <div style="background-color:white;
-	    whidght:1000px;
+      padding:60px;
 	    height:800px;
-	    padding:60px;
             border:2px solid black">
 
- <p> Escolha um dos dipositivos para ser analizado e diagnosticado:</p>
-<br>
+ <p style="margin-bottom:10px;"> Escolha um dos dipositivos para ser analisado e diagnosticado:
 
-<br>
-<br>
+
+
+
 
 <ol>
 <li>USB</li>
@@ -174,74 +182,66 @@ Diagnóstico de Hardware
 <li>Placa Mãe</li>
 </ol>
 
-<br>
 
-<p style="text-align:center">Digite o número respectivo ao 
-Hardware desejado:</p>
-<br>
-<br>
-<form style="font-size:12pt;"
+
+<p style="text-align:center">Digite o número respectivo ao Hardware desejado:
+
+
+<form style="font-size:12pt;margin-bottom:10px;"
 	     method="post" action="phpdiag.php">
 
-<center>
 <input type="text" name="opcao" style="text-align:center">
 
-<br>
-<br>
-
 <input type="submit"
-       value="iniciar">
-       </center>
-<br>
+       value="Iniciar">
 
 </form>
 
-<div style="border:2px solid black; padding:2em">
-
+<div id="info" style="border:2px solid black; padding: 10px;margin:15px;font-size:10pt;">
 <?php
 $resposta= $_POST["opcao"];
-
 switch ($resposta){
 case 1:
-echo "Entrada USB";
+echo "<p>Entrada USB</p>";
 $usb= shell_exec("lsusb");
 sleep(3);
-echo "<pre>$usb</pre>";
+echo "<p style=\"display: inline;\">$usb</p>";
 break;
 
 case 2:
-echo "Entrada PCI";
+echo "<p>Entrada PCI</p>";
+echo "";
 $pci= shell_exec("lspci");
 sleep(3);
-echo "<pre>$pci</pre>";
+echo "<p style=\"display: inline;\">$pci</p>";
 break;
 
 case 3:
-echo "Memória RAM";
+echo "<p>Memória RAM</p>";
 $ram= shell_exec("free -m");
 sleep(3);
-echo "<pre>$ram</pre>";
+echo "<p style=\"display: inline;\">$ram</p>";
 break;
 
 case 4:
-echo "HD";
+echo "<p>HD</p>";
 $hd= shell_exec("df -h");
 sleep(3);
-echo "<pre>$hd</pre>";
+echo "<p style=\"display: inline;\">$hd</p>";
 break;
 
 case 5:
-echo "CPU";
+echo "<p>CPU</p>";
 $cpu= shell_exec("head 19 /proc/cpuinfo");
 sleep(3);
-echo "<pre>$cpu</pre>";
+echo "<p style=\"display: inline;\">$cpu</p>";
 break;
 
 case 6:
-echo "Placa mãe";
+echo "<p>Placa mãe</p>";
 $plc= shell_exec("lshw -class system");
 sleep(3);
-echo "<pre>$plc</pre>";
+echo "<p style=\"displ  ay: inline;\">$plc</p>";
 break;
 }
 ?>
