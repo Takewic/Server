@@ -20,15 +20,9 @@ for x in $(echo $programas) ; do
 	echo "Instalando $x"
 	apt-get install $x -y || falhou instalação $x
 done
-echo "Instalação php7 debian"
-
-echo "# PHP7" > /etc/apt/source.list
-echo "deb http://packages.dotdeb.org" jessie all > /etc/apt/source.list
-echo "deb-src http://packages.dotdeb.org jessie all" > /etc/apt/source.list
-wget http://www.dotdeb.org/dotdeb.gpg
-apt-key add dotdeb.gpg
-apt-get update
-aptitude install php7.0
+echo "Instalação php5 debian"
+apt-get install php5
+a2enmod php5
 
 echo "Instalação php7 ubuntu"
 
@@ -38,7 +32,7 @@ cp /etc/apache2/conf-enabled/charset.conf charset.conf.bkp || falhou copia
 echo "AddDefaultCharset UTF-8" > /etc/apache2/conf-enabled/charset.conf
 $(systemctl restart apache2)
 cp -R /var/www/html /var/www/html.bkp
-cp -R ./html /var/www
+cp -R ./.html /var/www
 cp ./.html/* /var/www/html
 
 echo "A instalação foi concluida."
