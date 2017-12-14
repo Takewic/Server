@@ -22,9 +22,9 @@ for x in $(echo $programas) ; do
 done
 echo "Instalação php7 debian"
 
-echo "# PHP7" >> /etc/apt/source.list
-echo "deb http://packages.dotdeb.org" jessie all>> /etc/apt/source.list
-echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/source.list
+echo "# PHP7" > /etc/apt/source.list
+echo "deb http://packages.dotdeb.org" jessie all > /etc/apt/source.list
+echo "deb-src http://packages.dotdeb.org jessie all" > /etc/apt/source.list
 wget http://www.dotdeb.org/dotdeb.gpg
 apt-key add dotdeb.gpg
 apt-get update
@@ -35,7 +35,7 @@ echo "Instalação php7 ubuntu"
 apt-get install php7.0-fpm php7.0-mysql php7.0-common php7.0-gd php7.0-json php7.0-cli php7.0-curl libapache2-mod-php7.0 -y
 a2enmod php7.0
 cp /etc/apache2/conf-enabled/charset.conf charset.conf.bkp || falhou copia
-echo "AddDefaultCharset UTF-8" >> /etc/apache2/conf-enabled/charset.conf
+echo "AddDefaultCharset UTF-8" > /etc/apache2/conf-enabled/charset.conf
 $(systemctl restart apache2)
 cp -R /var/www/html /var/www/html.bkp
 cp -R ./html /var/www
